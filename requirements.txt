@@ -1,14 +1,12 @@
 numpy>=1.21.0
 opencv-python>=4.5.0
 Pillow>=9.0.0
-
 insightface>=0.7.3
 onnxruntime-gpu==1.22.0
+
 # For CUDA 13 (e.g. Arch Linux / CachyOS), use the nightly build:
 #   pip install coloredlogs flatbuffers numpy packaging protobuf sympy
 #   pip install --pre --index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/ort-cuda-13-nightly/pypi/simple/ onnxruntime-gpu
 
 PyQt6>=6.4.0
-
-
 tqdm>=4.64.0
