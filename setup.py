@@ -22,7 +22,7 @@ if requirements_file.exists():
 
 setup(
     name="deep-face-net",
-    version="1.0.0",
+    version="1.0.1",
     author="Deep Face Net Contributors",
     author_email="",
     description="A professional real-time face swapping application with GUI and CLI support",
@@ -50,7 +50,7 @@ setup(
     python_requires=">=3.8",
     install_requires=requirements,
     extras_require={
-        "gpu": ["onnxruntime-gpu>=1.12.0"],
+        "gpu": ["onnxruntime-gpu>=1.22.0"],
         "virtualcam": ["pyvirtualcam>=0.10.0"],
         "dev": [
             "pytest>=7.0.0",

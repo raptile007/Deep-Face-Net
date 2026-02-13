@@ -79,15 +79,20 @@ pip install -r requirements.txt
 
 ### 4. Download Models
 
-The application requires pre-trained models. Download them and place in the `models/` directory:
+The application requires several pre-trained models to function. Due to their large size, they are not included in the git repository.
 
-- **InSwapper Model**: [inswapper_128.onnx](https://github.com/facefusion/facefusion-assets/releases/download/models/inswapper_128.onnx)
-- **Face Analysis Model**: Buffalo_L (automatically downloaded on first run via InsightFace)
+You can **automatically download** all required models using the included script:
 
-Create the models directory if it doesn't exist:
 ```bash
-mkdir -p models
+python download_models.py
 ```
+
+This will download:
+- **InSwapper 128** (Face Swapping)
+- **GFPGAN** (Face Enhancement)
+- **RetinaFace** (Face Detection)
+
+If the automated download fails, please refer to [models/README.md](models/README.md) for manual download links.
 
 ### 5. Optional: Virtual Camera Support
 

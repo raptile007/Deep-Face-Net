@@ -112,13 +112,10 @@ dmypy.json
 *~
 .DS_Store
 
-# Project specific
-models/*.onnx
-models/*.pth
-models/*.pt
-models/*.bin
-models/*.tflite
-models/*.h5
+# Models
+models/*
+!models/README.md
+!models/detector.tflite
 
 *.mp4
 *.avi
