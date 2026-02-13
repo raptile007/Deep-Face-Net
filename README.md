@@ -90,7 +90,6 @@ python download_models.py
 This will download:
 - **InSwapper 128** (Face Swapping)
 - **GFPGAN** (Face Enhancement)
-- **RetinaFace** (Face Detection)
 
 If the automated download fails, please refer to [models/README.md](models/README.md) for manual download links.
 
