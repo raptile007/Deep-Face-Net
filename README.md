@@ -1,4 +1,4 @@
-# Deep Face Net 🎭
+# Deep Face Net
 
 <div align="center">
 
@@ -15,34 +15,33 @@
 
 ---
 
-## 🌟 Features
+## Features
 
-### 🖥️ **Dual Interface**
+### Dual Interface
 - **Modern GUI Application** - Professional PyQt6 interface with dark theme
 - **Command Line Interface** - Powerful CLI for batch processing and automation
 
-### 🎥 **Live Processing**
+### Live Processing
 - **Real-time Webcam Face Swapping** - Swap faces in live video feed
 - **Multiple Camera Support** - Detect and switch between available cameras
 - **Virtual Camera Output** - Stream to OBS, Zoom, Discord, and other apps (optional)
 - **Mouth Mask Feature** - Preserve natural mouth movements
 
-### 📁 **Offline Processing**
+### Offline Processing
 - **Image Processing** - Swap faces in static images
 - **Video Processing** - Process entire video files with face swapping
 - **Drag & Drop Support** - Easy file selection with drag-and-drop interface
 - **Progress Tracking** - Real-time progress bars and status updates
 
-### 🎨 **Advanced Features**
+### Advanced Features
 - **Face Detection & Analysis** - Powered by InsightFace's Buffalo_L model
 - **High-Quality Swapping** - Using InSwapper 128 ONNX model
-
 - **Multi-face Support** - Detect and swap multiple faces simultaneously
 - **Smart Face Masking** - Advanced masking for natural-looking results
 
 ---
 
-## 📋 Requirements
+## Requirements
 
 - **Python**: 3.8 or higher
 - **Operating System**: Linux, macOS, or Windows
@@ -51,7 +50,7 @@
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the Repository
 
@@ -75,7 +74,7 @@ pip install -r requirements.txt
 
 > [!TIP]
 > For **GPU acceleration**, install `onnxruntime-gpu` instead of `onnxruntime`.
-> If you're on **CUDA 13** (common on Arch Linux / CachyOS), see the [Troubleshooting](#%EF%B8%8F-troubleshooting) section below.
+> If you're on **CUDA 13** (common on Arch Linux / CachyOS), see the [Troubleshooting](#-troubleshooting) section below.
 
 ### 4. Download Models
 
@@ -109,7 +108,7 @@ sudo modprobe v4l2loopback devices=1
 
 ---
 
-## 💻 Usage
+## Usage
 
 ### GUI Mode (Default)
 
@@ -176,7 +175,7 @@ python run.py --source face.jpg --target video.mp4 --output result.mp4 --fps 30 
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 Deep-Face-Net/
@@ -194,7 +193,7 @@ Deep-Face-Net/
 │   └── engine/                  # Processing engines
 │       ├── face_swapper.py      # Face swapping logic
 │       ├── face_masking.py      # Face masking utilities
-│       └── face_enhancer.py     # Face enhancement
+│       ├── face_enhancer.py     # Face enhancement
 ├── models/                       # Pre-trained models (not included)
 ├── testing/                      # Test files and samples
 ├── run.py                        # Main entry point
@@ -203,7 +202,7 @@ Deep-Face-Net/
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 Settings are stored in `core/config.py`:
 
@@ -215,7 +214,7 @@ User preferences (working directory, etc.) are saved in `~/.deepfacenet_settings
 
 ---
 
-## 🎯 How It Works
+## How It Works
 
 1. **Face Detection**: Uses InsightFace's Buffalo_L model to detect faces in source and target
 2. **Face Analysis**: Extracts facial landmarks and embeddings
@@ -225,7 +224,7 @@ User preferences (working directory, etc.) are saved in `~/.deepfacenet_settings
 
 ---
 
-## ⚠️ Limitations & Known Issues
+## Limitations & Known Issues
 
 - **GPU Acceleration**: ONNX Runtime with CUDA support recommended for real-time performance
 - **Face Quality**: Works best with clear, front-facing faces
@@ -235,7 +234,7 @@ User preferences (working directory, etc.) are saved in `~/.deepfacenet_settings
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### GPU / CUDA 13 Support
 
@@ -251,7 +250,7 @@ pip install --pre --index-url https://aiinfra.pkgs.visualstudio.com/PublicPackag
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes:
 
@@ -263,28 +262,28 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 ---
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## ⚖️ Ethical Considerations
+## Ethical Considerations
 
 **IMPORTANT**: This software is intended for educational and entertainment purposes only.
 
-- ✅ **DO**: Use for learning, research, and creative projects
-- ✅ **DO**: Obtain consent from individuals whose faces you use
-- ✅ **DO**: Clearly label deepfake content when sharing
-- ❌ **DON'T**: Create misleading or deceptive content
-- ❌ **DON'T**: Use for harassment, fraud, or illegal activities
-- ❌ **DON'T**: Violate anyone's privacy or rights
+- **DO**: Use for learning, research, and creative projects
+- **DO**: Obtain consent from individuals whose faces you use
+- **DO**: Clearly label deepfake content when sharing
+- **DON'T**: Create misleading or deceptive content
+- **DON'T**: Use for harassment, fraud, or illegal activities
+- **DON'T**: Violate anyone's privacy or rights
 
 **Users are solely responsible for how they use this software. The developers assume no liability for misuse.**
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 This project uses the following open-source technologies:
 
@@ -296,7 +295,7 @@ This project uses the following open-source technologies:
 
 ---
 
-## 📧 Contact
+## Contact
 
 For questions, suggestions, or issues, please open an issue on GitHub.
 
@@ -304,8 +303,8 @@ For questions, suggestions, or issues, please open an issue on GitHub.
 
 <div align="center">
 
-**Made with ❤️ by the Deep Face Net Team**
+**Made with love by the Deep Face Net Team**
 
-⭐ Star this repo if you find it useful!
+Star this repo if you find it useful!
 
 </div>
