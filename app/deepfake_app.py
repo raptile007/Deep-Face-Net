@@ -35,6 +35,7 @@ from PyQt6.QtWidgets import (
     QDialog,
     QLineEdit,
     QComboBox,
+    QScrollArea,
 )
 from PyQt6.QtCore import Qt, QTimer, QUrl, QThread, pyqtSignal
 from PyQt6.QtGui import QImage, QPixmap, QFont, QDesktopServices
@@ -469,9 +470,24 @@ class DeepfakeApp(QMainWindow):
 
     def create_control_panel(self):
         """Create the control panel"""
+        # Wrap in scroll area for cross-platform compatibility
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
+        scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        scroll_area.setStyleSheet("""
+            QScrollArea {
+                border: none;
+                background-color: transparent;
+            }
+            QScrollArea > QWidget > QWidget {
+                background-color: transparent;
+            }
+        """)
+
         widget = QWidget()
         layout = QVBoxLayout()
         layout.setSpacing(15)
+        layout.setContentsMargins(5, 5, 5, 5)
 
         # Source image section
         source_group = QGroupBox("Source Image")
@@ -515,12 +531,15 @@ class DeepfakeApp(QMainWindow):
         self.source_status.setStyleSheet("color: #888;")
         source_layout.addWidget(self.source_status)
 
+        source_layout.setContentsMargins(10, 25, 10, 10)
         source_group.setLayout(source_layout)
         layout.addWidget(source_group)
 
         # Camera controls section
         camera_group = QGroupBox("Camera Controls")
         camera_layout = QVBoxLayout()
+        camera_layout.setContentsMargins(10, 25, 10, 10)
+        camera_layout.setSpacing(8)
 
         # Camera selection
         camera_select_label = QLabel("Select Camera:")
@@ -572,13 +591,13 @@ class DeepfakeApp(QMainWindow):
 
         self.start_btn = QPushButton("Start Camera")
         self.start_btn.clicked.connect(self.toggle_camera)
-        self.start_btn.setMinimumHeight(40)
+        self.start_btn.setFixedHeight(40)
         camera_layout.addWidget(self.start_btn)
 
         self.swap_btn = QPushButton("Enable Face Swap")
         self.swap_btn.clicked.connect(self.toggle_swap)
         self.swap_btn.setEnabled(False)
-        self.swap_btn.setMinimumHeight(40)
+        self.swap_btn.setFixedHeight(40)
         camera_layout.addWidget(self.swap_btn)
 
         # Mouth mask checkbox
@@ -586,7 +605,7 @@ class DeepfakeApp(QMainWindow):
         self.mouth_mask_checkbox.setEnabled(False)
         self.mouth_mask_checkbox.stateChanged.connect(self.toggle_mouth_mask)
         self.mouth_mask_checkbox.setStyleSheet(
-            "QCheckBox { color: #ffffff; padding: 5px; }"
+            "QCheckBox { color: #ffffff; padding: 8px 5px; margin-top: 4px; }"
             "QCheckBox::indicator { width: 18px; height: 18px; }"
         )
         camera_layout.addWidget(self.mouth_mask_checkbox)
@@ -597,7 +616,7 @@ class DeepfakeApp(QMainWindow):
             self.virtual_cam_checkbox.setEnabled(False)
             self.virtual_cam_checkbox.stateChanged.connect(self.toggle_virtual_camera)
             self.virtual_cam_checkbox.setStyleSheet(
-                "QCheckBox { color: #ffffff; padding: 5px; }"
+                "QCheckBox { color: #ffffff; padding: 8px 5px; }"
                 "QCheckBox::indicator { width: 18px; height: 18px; }"
             )
             self.virtual_cam_checkbox.setToolTip("Stream to virtual webcam for OBS/Zoom/Discord")
@@ -609,6 +628,7 @@ class DeepfakeApp(QMainWindow):
         # Info section
         info_group = QGroupBox("Information")
         info_layout = QVBoxLayout()
+        info_layout.setContentsMargins(10, 25, 10, 10)
 
         info_text = QLabel(
             "1. Select a source image\n"
@@ -627,7 +647,8 @@ class DeepfakeApp(QMainWindow):
 
         layout.addStretch()
         widget.setLayout(layout)
-        return widget
+        scroll_area.setWidget(widget)
+        return scroll_area
 
     def detect_and_populate_cameras(self):
         """Detect cameras in background and populate the combo box"""
@@ -841,12 +862,12 @@ class DeepfakeApp(QMainWindow):
 
         self.is_capturing = False
         self.start_btn.setText("Start Camera")
-        self.start_btn.setStyleSheet("")
+        self.start_btn.setStyleSheet("QPushButton { background-color: #4CAF50; } QPushButton:hover { background-color: #45a049; } QPushButton:disabled { background-color: #555; color: #888; }")
         self.camera_combo.setEnabled(True)  # Re-enable camera selection
         self.refresh_cameras_btn.setEnabled(True)
         self.swap_btn.setEnabled(False)
         self.swap_btn.setText("Enable Face Swap")
-        self.swap_btn.setStyleSheet("")
+        self.swap_btn.setStyleSheet("QPushButton { background-color: #4CAF50; } QPushButton:hover { background-color: #45a049; } QPushButton:disabled { background-color: #555; color: #888; }")
         self.mouth_mask_checkbox.setEnabled(False)
         self.mouth_mask_checkbox.setChecked(False)
         
@@ -885,7 +906,7 @@ class DeepfakeApp(QMainWindow):
                 self.mouth_mask_checkbox.setEnabled(True)
             else:
                 self.swap_btn.setText("Enable Face Swap")
-                self.swap_btn.setStyleSheet("")
+                self.swap_btn.setStyleSheet("QPushButton { background-color: #4CAF50; } QPushButton:hover { background-color: #45a049; } QPushButton:disabled { background-color: #555; color: #888; }")
                 self.status_label.setText("Face swapping disabled")
                 self.mouth_mask_checkbox.setEnabled(False)
                 self.mouth_mask_checkbox.setChecked(False)
@@ -1219,14 +1240,16 @@ class DeepfakeApp(QMainWindow):
                 color: #ffffff;
                 border: 2px solid #444;
                 border-radius: 8px;
-                margin-top: 10px;
-                padding-top: 10px;
+                margin-top: 12px;
+                padding-top: 18px;
                 background-color: #2a2a2a;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
+                subcontrol-position: top left;
                 left: 10px;
                 padding: 0 5px;
+                top: 2px;
             }
             QPushButton {
                 background-color: #4CAF50;
@@ -1304,10 +1327,21 @@ class DeepfakeApp(QMainWindow):
 
 def main():
     """Main application entry point"""
+    # Enable High DPI scaling for Windows/multi-monitor setups
+    try:
+        from PyQt6.QtCore import Qt as QtCore_Qt
+        QApplication.setHighDpiScaleFactorRoundingPolicy(
+            QtCore_Qt.HighDpiScaleFactorRoundingPolicy.PassThrough
+        )
+    except AttributeError:
+        pass  # Older PyQt6 versions handle this automatically
+
     app = QApplication(sys.argv)
 
-    # Set application-wide font
-    font = QFont("Segoe UI", 10)
+    # Set application-wide font with cross-platform fallbacks
+    font = QFont()
+    font.setFamilies(["Segoe UI", "SF Pro Display", "Ubuntu", "Noto Sans", "sans-serif"])
+    font.setPointSize(10)
     app.setFont(font)
 
     window = DeepfakeApp()

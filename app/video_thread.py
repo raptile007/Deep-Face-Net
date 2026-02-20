@@ -119,8 +119,10 @@ class VideoThread(QThread):
                             )
 
                 except Exception as e:
-                    # Continue processing even if face detection fails
-                    pass
+                    # Log error instead of silently ignoring
+                    import traceback
+                    print(f"[Face Swap Error] {e}")
+                    traceback.print_exc()
 
                 # Emit processed frame
                 self.frame_ready.emit(frame)
