@@ -1,6 +1,11 @@
 # Deep Face Net
 
 <div align="center">
+<img width="150" height="150" alt="logo" src="https://github.com/user-attachments/assets/53e79f4c-ba3d-4589-b8b6-5f33fbcbd92d" />
+</div>
+
+<div align="center">
+
 
 ![Deep Face Net](https://img.shields.io/badge/Deep%20Face%20Net-Advanced%20Face%20Swapping-blue?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.8+-green?style=for-the-badge&logo=python)
@@ -10,6 +15,7 @@
 **A professional real-time face swapping application with both GUI and CLI support**
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Screenshots](#screenshots) • [License](#license)
+
 
 </div>
 
@@ -302,4 +308,3 @@ This project uses the following open-source technologies:
 
 For questions, suggestions, or issues, please open an issue on GitHub.
 
----
