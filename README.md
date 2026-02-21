@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img width="1024" height="1536" alt="Adobe Express - file" src="https://github.com/user-attachments/assets/b2864cdb-cd04-4591-97db-1c13eee1690f" />
+<img width="900" height="1350" alt="Adobe Express - file" src="https://github.com/user-attachments/assets/b2864cdb-cd04-4591-97db-1c13eee1690f" />
 
 ![Deep Face Net](https://img.shields.io/badge/Deep%20Face%20Net-Advanced%20Face%20Swapping-blue?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.8+-green?style=for-the-badge&logo=python)
