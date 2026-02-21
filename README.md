@@ -1,4 +1,4 @@
-# Deep Face Net ![icon](https://github.com/user-attachments/assets/08bf89b8-39c3-474d-b8a6-788164be2657)
+# <img width="150" height="150" alt="ChatGPT Image Feb 22, 2026, 12_01_56 AM" src="https://github.com/user-attachments/assets/55094590-21f0-4612-9ee0-f25fac228700" /> Deep Face Net
 
 
 <div align="center">
