@@ -1971,7 +1971,7 @@ class DeepfakeApp(QMainWindow):
         inner.addWidget(name_label)
 
         # Version badge
-        version_label = QLabel("v2.1.0")
+        version_label = QLabel("v2.2.0")
         version_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         version_label.setStyleSheet(
             "font-size: 14px; color: #4CAF50; font-weight: bold;"
