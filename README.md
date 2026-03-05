@@ -33,7 +33,6 @@
 - Virtual camera output for OBS, Zoom, Discord (optional)
 - Mouth mask to preserve natural mouth movements
 - Model status indicators in Live and Offline tabs
-- In-app model downloader with progress tracking
 
 ---
 
