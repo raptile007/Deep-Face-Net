@@ -48,9 +48,9 @@ class FileProcessingThread(QThread):
     Background thread for processing video/image files.
 
     mode:
-      'swap'         – face swap only (source face required)
-      'enhance'      – GFPGAN enhancement only, no swap (source face not needed)
-      'swap_enhance' – swap then GFPGAN (source face required)
+      'swap'         - face swap only (source face required)
+      'enhance'      - GFPGAN enhancement only, no swap (source face not needed)
+      'swap_enhance' - swap then GFPGAN (source face required)
     """
     progress_update     = pyqtSignal(int)
     status_update       = pyqtSignal(str)
@@ -70,7 +70,7 @@ class FileProcessingThread(QThread):
         self._enhance_fn    = None
 
         if self._needs_enhance:
-            # Warm up GFPGAN — capture any facexlib auxiliary downloads and
+            # Warm up GFPGAN - capture any facexlib auxiliary downloads and
             # relay them to the UI so the user knows something is happening.
             self.status_update.emit(
                 "Loading GFPGAN enhancer… (first run may download auxiliary models)"
@@ -93,7 +93,7 @@ class FileProcessingThread(QThread):
                 self.progress_update.emit(0)  # reset to normal
             except FileNotFoundError as e:
                 self.progress_update.emit(0)
-                print(f"Warning: Enhancement disabled — {e}")
+                print(f"Warning: Enhancement disabled - {e}")
                 self._needs_enhance = False
                 if mode == MODE_ENHANCE:
                     raise
@@ -216,7 +216,7 @@ class FileProcessingThread(QThread):
                     elapsed = time.time() - start_time
                     fps_proc = frame_count / elapsed if elapsed > 0 else 0
                     self.status_update.emit(
-                        f"{mode_labels.get(self.mode, 'Processing')}: {progress}% — {fps_proc:.1f} FPS"
+                        f"{mode_labels.get(self.mode, 'Processing')}: {progress}% - {fps_proc:.1f} FPS"
                     )
 
         cap.release()

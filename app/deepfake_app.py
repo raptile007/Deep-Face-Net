@@ -509,7 +509,7 @@ class DeepfakeApp(QMainWindow):
         self.radio_enhance = QRadioButton("Enhance Only  (no swap)")
         self.radio_enhance.setEnabled(_gfpgan_ok)
         self.radio_enhance.setToolTip(
-            "Sharpen faces in target using GFPGAN — no source face needed."
+            "Sharpen faces in target using GFPGAN - no source face needed."
             if _gfpgan_ok else
             "Download GFPGANv1.4.pth from the Models tab first."
         )
@@ -552,7 +552,7 @@ class DeepfakeApp(QMainWindow):
         mode_inner.addLayout(pills_row)
 
         if not _gfpgan_ok:
-            missing_lbl = QLabel("  GFPGAN not downloaded — go to Models tab")
+            missing_lbl = QLabel("  GFPGAN not downloaded - go to Models tab")
             missing_lbl.setStyleSheet("color: #f44336; font-size: 11px; padding-top: 2px;")
             mode_inner.addWidget(missing_lbl)
 
@@ -561,7 +561,7 @@ class DeepfakeApp(QMainWindow):
         status_inner.addWidget(self.process_info_label)
         status_inner.addWidget(self.progress_bar)
 
-        # Download status indicator — shown when GFPGAN fetches auxiliary models
+        # Download status indicator - shown when GFPGAN fetches auxiliary models
         self.download_status_label = QLabel()
         self.download_status_label.setWordWrap(True)
         self.download_status_label.setStyleSheet(
@@ -1694,7 +1694,7 @@ class DeepfakeApp(QMainWindow):
         self.btn_start_process.setEnabled(ready)
         if ready:
             if enhance_only:
-                self.process_info_label.setText("Ready to enhance — no source face needed.")
+                self.process_info_label.setText("Ready to enhance - no source face needed.")
             else:
                 self.process_info_label.setText("Ready to process.")
         else:
