@@ -208,7 +208,6 @@ pip install --pre --index-url https://aiinfra.pkgs.visualstudio.com/PublicPackag
 git clone https://github.com/MIDHUNGRAJ/BasicSR.git
 cd BasicSR
 pip install -e .
-cd ..
 ```
 
 > This fork uses `pyproject.toml` instead of the legacy `setup.py`, avoiding most build errors.
@@ -221,7 +220,6 @@ cd GFPGAN
 pip install facexlib
 pip install -r requirements.txt
 python setup.py develop
-cd ..
 ```
 
 After this, GFPGAN will be available system-wide and the Enhance modes in Deep Face Net will work correctly.
