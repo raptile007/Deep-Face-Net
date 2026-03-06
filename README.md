@@ -19,8 +19,8 @@
 
 </div>
 
-<img width="1917" height="1042" alt="image" src="https://github.com/user-attachments/assets/96e72dff-463a-482b-9ab1-f8817fd8f7bb" />
-<img width="1918" height="1046" alt="image" src="https://github.com/user-attachments/assets/4db5c4d8-5eef-4168-8769-c7cb7a3e2b00" />
+<img width="1321" height="1004" alt="image" src="https://github.com/user-attachments/assets/67496f67-4671-4a2b-b58d-707095f49295" />
+<img width="1320" height="1003" alt="image" src="https://github.com/user-attachments/assets/feed4b8a-a8bd-4172-819e-5d7350b73b31" />
 
 ---
 
