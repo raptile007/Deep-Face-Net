@@ -196,33 +196,6 @@ pip install coloredlogs flatbuffers numpy packaging protobuf sympy
 pip install --pre --index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/ort-cuda-13-nightly/pypi/simple/ onnxruntime-gpu
 ```
 
----
-
-### BasicSR / GFPGAN Installation Issues
-
-`gfpgan` requires **BasicSR**, which can fail to build from PyPI on many systems (missing headers, PEP 517 errors, CUDA mismatch). The recommended approach is to clone both from source.
-
-**Step 1 — Install BasicSR from the maintained fork** (fixes common build failures):
-
-```bash
-git clone https://github.com/MIDHUNGRAJ/BasicSR.git
-cd BasicSR
-pip install -e .
-```
-
-> This fork uses `pyproject.toml` instead of the legacy `setup.py`, avoiding most build errors.
-
-**Step 2 — Install GFPGAN from source:**
-
-```bash
-git clone https://github.com/TencentARC/GFPGAN.git
-cd GFPGAN
-pip install facexlib
-pip install -r requirements.txt
-python setup.py develop
-```
-
-After this, GFPGAN will be available system-wide and the Enhance modes in Deep Face Net will work correctly.
 
 ---
 
@@ -266,7 +239,7 @@ This project uses the following open-source technologies:
 - [InsightFace](https://github.com/deepinsight/insightface) - Face analysis and recognition
 - [InSwapper](https://github.com/haofanwang/inswapper) - Face swapping model
 - [GFPGAN](https://github.com/TencentARC/GFPGAN) - Face enhancement model
-- [BasicSR](https://github.com/MIDHUNGRAJ/BasicSR) - Super-resolution backbone (maintained fork)
+
 - [PyQt6](https://www.riverbankcomputing.com/software/pyqt/) - GUI framework
 - [OpenCV](https://opencv.org/) - Computer vision library
 - [ONNX Runtime](https://onnxruntime.ai/) - Model inference

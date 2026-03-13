@@ -15,7 +15,7 @@ _LOCK = threading.Lock()
 
 
 def get_face_enhancer():
-    """Lazy singleton loader for GFPGANer."""
+    """Lazy singleton loader for the ONNX GFPGAN model."""
     global _ENHANCER
     if _ENHANCER is None:
         with _LOCK:
@@ -23,22 +23,48 @@ def get_face_enhancer():
                 if not Path(ENHANCER_MODEL).exists():
                     raise FileNotFoundError(
                         f"GFPGAN model not found at: {ENHANCER_MODEL}\n"
-                        "Run: python download_models.py --model GFPGANv1.4.pth"
+                        "Run: python download_models.py --model GFPGANv1.4.onnx"
                     )
                 try:
-                    from gfpgan import GFPGANer
+                    import onnxruntime
                 except ImportError:
-                    raise ImportError(
-                        "gfpgan is not installed. Run: pip install gfpgan"
-                    )
+                    raise ImportError("onnxruntime is not installed.")
 
-                _ENHANCER = GFPGANer(
-                    model_path=str(ENHANCER_MODEL),
-                    upscale=1,
-                    arch="clean",
-                    channel_multiplier=2,
-                    bg_upsampler=None,
-                )
+                providers = onnxruntime.get_available_providers()
+                if "CUDAExecutionProvider" in providers:
+                    providers = ["CUDAExecutionProvider", "CPUExecutionProvider"]
+
+                # Simple ONNX wrapper mimicking GFPGANer.enhance
+                class ONNXEnhancer:
+                    def __init__(self, model_path, providers):
+                        self.session = onnxruntime.InferenceSession(model_path, providers=providers)
+                        self.input_name = self.session.get_inputs()[0].name
+                        self.output_name = self.session.get_outputs()[0].name
+
+                    def enhance(self, img, has_aligned=True, only_center_face=True, paste_back=True, weight=0.5):
+                        # img is a 512x512 BGR image
+                        # BGR to RGB, normalize to [-1, 1], CHW
+                        img_rgb = img[:, :, ::-1]
+                        img_norm = img_rgb.astype(np.float32) / 255.0
+                        img_norm = (img_norm - 0.5) / 0.5
+                        img_norm = np.transpose(img_norm, (2, 0, 1))
+                        img_norm = np.expand_dims(img_norm, axis=0)
+
+                        # Inference
+                        out = self.session.run([self.output_name], {self.input_name: img_norm})[0][0]
+
+                        # CHW to HWC, denormalize to [0, 255], RGB to BGR
+                        out = np.transpose(out, (1, 2, 0))
+                        out = np.clip((out + 1.0) / 2.0 * 255.0, 0, 255).astype(np.uint8)
+                        out_bgr = out[:, :, ::-1]
+
+                        # Blend with original
+                        if weight < 1.0:
+                            out_bgr = cv2.addWeighted(img, 1.0 - weight, out_bgr, weight, 0)
+
+                        return None, None, out_bgr
+
+                _ENHANCER = ONNXEnhancer(str(ENHANCER_MODEL), providers)
     return _ENHANCER
 
 

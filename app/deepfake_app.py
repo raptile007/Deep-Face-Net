@@ -511,7 +511,7 @@ class DeepfakeApp(QMainWindow):
         self.radio_enhance.setToolTip(
             "Sharpen faces in target using GFPGAN - no source face needed."
             if _gfpgan_ok else
-            "Download GFPGANv1.4.pth from the Models tab first."
+            "Download GFPGANv1.4.onnx from the Models tab first."
         )
         self.radio_enhance.setStyleSheet(radio_style.format(c="#ccc" if _gfpgan_ok else "#666"))
         self.radio_enhance.toggled.connect(self.check_offline_readiness)
@@ -522,7 +522,7 @@ class DeepfakeApp(QMainWindow):
         self.radio_swap_enhance.setToolTip(
             "Swap faces, then run GFPGAN for sharper results."
             if _gfpgan_ok else
-            "Download GFPGANv1.4.pth from the Models tab first."
+            "Download GFPGANv1.4.onnx from the Models tab first."
         )
         self.radio_swap_enhance.setStyleSheet(radio_style.format(c="#ccc" if _gfpgan_ok else "#666"))
         self.radio_swap_enhance.toggled.connect(self.check_offline_readiness)
@@ -1971,7 +1971,7 @@ class DeepfakeApp(QMainWindow):
         inner.addWidget(name_label)
 
         # Version badge
-        version_label = QLabel("v2.2.0")
+        version_label = QLabel("v2.2.1")
         version_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         version_label.setStyleSheet(
             "font-size: 14px; color: #4CAF50; font-weight: bold;"

@@ -29,8 +29,8 @@ MODELS = {
         "description": "Face swap model (FP16, lighter)",
         "location": "models",
     },
-    "GFPGANv1.4.pth": {
-        "url": "https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.4.pth",
+    "GFPGANv1.4.onnx": {
+        "url": "https://huggingface.co/neurobytemind/GFPGANv1.4.onnx/resolve/main/GFPGANv1.4.onnx",
         "size": 348632874,
         "type": "enhancer",
         "required": False,

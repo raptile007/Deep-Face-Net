@@ -240,8 +240,8 @@ def _send_telemetry():
 
 def main():
     """Main entry point - routes to GUI or CLI based on arguments"""
-    _send_telemetry()
-    
+    # _send_telemetry()
+
     args = parse_arguments()
 
     # Determine mode: GUI or CLI
@@ -251,4 +251,3 @@ def main():
     else:
         # Arguments provided - run CLI mode
         run_cli(args)
-

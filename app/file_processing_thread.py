@@ -12,37 +12,6 @@ MODE_ENHANCE       = "enhance"
 MODE_SWAP_ENHANCE  = "swap_enhance"
 
 
-class _StdoutCapture:
-    """Context manager that intercepts stdout and forwards lines to a callback.
-    Used to capture facexlib/GFPGAN auxiliary-model download progress messages.
-    """
-    def __init__(self, callback):
-        self._callback = callback
-        self._original = None
-        self._buf = ""
-
-    def __enter__(self):
-        self._original = sys.stdout
-        sys.stdout = self
-        return self
-
-    def __exit__(self, *_):
-        sys.stdout = self._original
-
-    def write(self, text):
-        self._original.write(text)      # still show in terminal
-        self._buf += text
-        while "\n" in self._buf:
-            line, self._buf = self._buf.split("\n", 1)
-            line = line.strip()
-            if line:
-                self._callback(line)
-
-    def flush(self):
-        if self._original:
-            self._original.flush()
-
-
 class FileProcessingThread(QThread):
     """
     Background thread for processing video/image files.
@@ -70,23 +39,13 @@ class FileProcessingThread(QThread):
         self._enhance_fn    = None
 
         if self._needs_enhance:
-            # Warm up GFPGAN - capture any facexlib auxiliary downloads and
-            # relay them to the UI so the user knows something is happening.
-            self.status_update.emit(
-                "Loading GFPGAN enhancer… (first run may download auxiliary models)"
-            )
+            self.status_update.emit("Loading GFPGAN enhancer…")
             self.progress_update.emit(-1)   # -1 → indeterminate progress bar
             try:
                 from core.engine.face_enhancer import enhance_faces, get_face_enhancer
 
-                def _relay(line):
-                    # Forward only meaningful lines (skip OpenCV noise)
-                    low = line.lower()
-                    if any(k in low for k in ("download", "loading", "error", "%", "mb", "kb")):
-                        self.status_update.emit(f"↓ {line}")
+                get_face_enhancer()      # validates model
 
-                with _StdoutCapture(_relay):
-                    get_face_enhancer()      # validates model + triggers facexlib DL
 
                 self._enhance_fn = enhance_faces
                 self.status_update.emit("GFPGAN ready ✓")

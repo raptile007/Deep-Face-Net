@@ -22,7 +22,7 @@ if requirements_file.exists():
 
 setup(
     name="deep-face-net",
-    version="2.2.0",
+    version="2.2.1",
     author="Deep Face Net Contributors",
     author_email="",
     description="A professional real-time face swapping application with GUI and CLI support",
